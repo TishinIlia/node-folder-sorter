@@ -1,9 +1,5 @@
 const yargs = require('yargs');
-const path = require('path');
-const paths = {
-  src: null,
-  dist: null
-};
+const system = require('./files_systematization');
 
 const argv = yargs
 .usage('Usage: $0 [options]')
@@ -34,4 +30,4 @@ const argv = yargs
 .epilog('Node file sorter')
 .argv;
 
-console.log(argv);
+system.filesSystematization(argv.entry, argv.output, argv.delete);
