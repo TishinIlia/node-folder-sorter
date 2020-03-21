@@ -1,23 +1,23 @@
 const yargs = require('yargs');
-const system = require('./files_systematization');
+const path = require('path');
 
 const argv = yargs
 .usage('Usage: $0 [options]')
 .help('help')
 .alias('help', 'h')
-.version('0.0.1')
+.version('0.0.2')
 .alias('version', 'v')
-.example('$0 --entry ./filesSort --output ./dist  --delete => Sorting folder')
-.option('entry', {
-  alias: 'e',
+.example('$0 --src ./filesSort --dist ./dist  --delete => Sorting folder')
+.option('src', {
+  alias: 's',
   describe: 'Set source directory',
   demandOption: true,
   type: "string"
 })
-.option('output', {
-  alias: 'o',
+.option('dist', {
+  alias: 'd',
   describe: 'Set dist path',
-  default: '/dist',
+  default: path.join(__dirname, '/dist'),
   type: "string"
 })
 .option('delete', {
@@ -30,4 +30,5 @@ const argv = yargs
 .epilog('Node file sorter')
 .argv;
 
-system.filesSystematization(argv.entry, argv.output, argv.delete);
+exports.argv = argv;
+
